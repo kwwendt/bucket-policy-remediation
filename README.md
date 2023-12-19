@@ -1,12 +1,9 @@
-# Welcome to your CDK JavaScript project
+## Bucket policy remediation
 
-This is a blank project for CDK development with JavaScript.
+**Note**: This is an example and should not be used within production environments. This will also 
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app. The build step is not required when using JavaScript.
+Uses AWS Config with a custom rule to evaluate if S3 buckets have any bucket policy attached and if there is no bucket policy, it will auto-remediate with a default bucket policy (currently set to TLS enforcement).
 
-## Useful commands
+There is a remediation action set up but it is set to Manual remediation right now so S3 buckets aren't updated with the default bucket policy unless a user explicitly chooses to.
 
-* `npm run test`         perform the jest unit tests
-* `cdk deploy`           deploy this stack to your default AWS account/region
-* `cdk diff`             compare deployed stack with current state
-* `cdk synth`            emits the synthesized CloudFormation template
+With some minor adjustments, you can use Config input parameters to control which S3 buckets fall under this compliance check - e.g., bucket tags.
